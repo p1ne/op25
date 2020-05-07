@@ -863,6 +863,10 @@ class p25_rx_block (gr.top_block):
         elif s == 'adj_tune':
             freq = msg.arg1()
             self.adj_tune(freq)
+        elif s == 'freq_corr':
+            corr = msg.arg1()
+            self.src.set_freq_corr(self.last_set_ppm + corr)
+            self.last_set_ppm += corr
         elif s == 'toggle_plot':
             plot_type = msg.arg1()
             self.toggle_plot(plot_type)
